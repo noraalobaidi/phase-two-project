@@ -8,12 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 
 
@@ -33,6 +38,7 @@ public class GetStudentsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		 response.setContentType("text/html");
+		 List <Student> students= new ArrayList();
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,12 +47,21 @@ public class GetStudentsServlet extends HttpServlet {
 			qry = "select * from student";
 			theStatement = dbCon.createStatement();
 			resultset = theStatement.executeQuery(qry);
-			 
+//			 students.add(new Student(1,"nora",1234567890,"11th","Art"));
 			 while(resultset.next()) {
-					long civil=resultset.getLong("civilId");
-					out.println(civil);
+				 Student student = new Student(resultset.getInt("id"),resultset.getString("name"),
+							resultset.getLong("civilId"),resultset.getString("grade"),resultset.getString("section")
+							);
+				 students.add(student);
 			 }	
 			 out.println("hi");
+//			 for(Student student: students) {
+//				 out.println(student.civilId);
+//			 }
+			 request.setAttribute("studentsList", students);
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
+				dispatcher.forward(request, response);
+			
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();

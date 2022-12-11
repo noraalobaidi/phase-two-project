@@ -2,11 +2,11 @@ package com.nora.project;
 
 public class Student {
 
-	int id;
-	String name;
-	long civilId;
-	String grade;
-	String section;
+	public int id;
+	public String name;
+	public long civilId;
+	public String grade;
+	public String section;
 	
 	Student(int id,String name,long civilId,String grade,String section){
 		this.id=id;
