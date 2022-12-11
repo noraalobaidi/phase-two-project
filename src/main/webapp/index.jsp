@@ -13,5 +13,8 @@
 <form action="GetStudentsServlet">
 <input type="submit" value="students">
 </form>
+<form action="InsertStudent.jsp">
+<input type="submit" value="insert student">
+</form>
 </body>
 </html>
