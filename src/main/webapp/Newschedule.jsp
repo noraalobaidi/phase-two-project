@@ -15,6 +15,7 @@
 
 <form action="InsertScheduleServlet">
 <select name="teacher_item">
+<option value="teacher_name">teacher name</option>
  <%
  ArrayList<Teacher> teacherslist =(ArrayList<Teacher>)request.getAttribute("teachersList");
         for(Teacher t:teacherslist){%>
@@ -26,6 +27,7 @@
 </select>
 
 <select name="subject_item">
+<option value="subject_name">subject</option>
  <%
  ArrayList<Subject> subjectslist =(ArrayList<Subject>)request.getAttribute("subjectsList");
         for(Subject s:subjectslist){%>
@@ -36,6 +38,7 @@
             <%}%>
 </select>
 <select name="class_item">
+<option value="class_name">class</option>
  <%
  ArrayList<Classes> classeslist =(ArrayList<Classes>)request.getAttribute("classesList");
         for(Classes c:classeslist){%>

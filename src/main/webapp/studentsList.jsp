@@ -16,7 +16,7 @@
           <th><b>id</b></th>
           <th><b>Name</b></th>
           <th><b>Civil Id</b></th>
-          <th><b>Grade</b></th>
+          <th><b>Class</b></th>
           <th><b>Section</b></th>
          </tr>
         <%-- Fetching the attributes of the request object
@@ -32,7 +32,7 @@
                 <td><%=s.id%></td>
                 <td><%=s.name%></td>
                 <td><%=s.civilId%></td>
-                <td><%=s.grade%></td>
+                <td><%=s.theclass%></td>
                 <td><%=s.section%></td>
             </tr>
             <%}%>

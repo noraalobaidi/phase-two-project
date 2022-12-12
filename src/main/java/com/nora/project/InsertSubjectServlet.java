@@ -31,33 +31,42 @@ public class InsertSubjectServlet extends HttpServlet {
 		response.setContentType("text/html");
 		String title = request.getParameter("title");
 		
-		 
-		 try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
-				System.out.println("connected successfully");
-				qry = "insert into subject (`id`, `title`) VALUES (?,?)";
-//				theStatement = dbCon.createStatement();
-//				resultset = theStatement.executeQuery(qry);
-				preparedStatement = dbCon.prepareStatement(qry);
-				preparedStatement.setNull(1,0);
-				preparedStatement.setString(2, title);
-		
-				
-				if(preparedStatement.executeUpdate() > 0)
-					System.out.println("subject inserted successfully");
-//				 request.setAttribute("studentsList", students);
-//				 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//					dispatcher.forward(request, response);
-				
-			} catch (ClassNotFoundException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		if(title.equals(""))
+		{
+			out.println("<script type=\"text/javascript\">"); 
+			out.println("alert('Please fill all the fields');"); 
+			out.println("location='InsertSubject.jsp';"); 
+			out.println("</script>"); 
+		}
+		else {
+			 try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
+					System.out.println("connected successfully");
+					qry = "insert into subject (`id`, `title`) VALUES (?,?)";
+//					theStatement = dbCon.createStatement();
+//					resultset = theStatement.executeQuery(qry);
+					preparedStatement = dbCon.prepareStatement(qry);
+					preparedStatement.setNull(1,0);
+					preparedStatement.setString(2, title);
+			
+					
+					if(preparedStatement.executeUpdate() > 0)
+						System.out.println("subject inserted successfully");
+//					 request.setAttribute("studentsList", students);
+//					 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
+//						dispatcher.forward(request, response);
+					
+				} catch (ClassNotFoundException e) {
+					
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
+		}
+		
 }
 
 

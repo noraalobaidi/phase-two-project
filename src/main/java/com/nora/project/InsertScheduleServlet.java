@@ -30,34 +30,44 @@ public class InsertScheduleServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
+		if (teacher.equals("teacher_name")||subject.equals("subject_name")||theClass.endsWith("class_name"))
+		{
+			
+			
+			out.println("<script type=\"text/javascript\">"); 
+			out.println("alert('Please fill all the fields');"); 
+			out.println("location='GetTSCservlet';"); 
+			out.println("</script>"); 	
+		}
+		else { try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
+			System.out.println("connected successfully");
+			qry = "insert into schedule (`id`, `class_name`, `subject_title`, `teacher_name`) VALUES (?,?,?,?)";
+
+			preparedStatement = dbCon.prepareStatement(qry);
+			preparedStatement.setNull(1,0);
+			preparedStatement.setString(2, theClass);
+			preparedStatement.setString(3, subject);
+			preparedStatement.setString(4, teacher);
+	
+			
+			if(preparedStatement.executeUpdate() > 0)
+				System.out.println("new class inserted successfully to the schedule");
+//			 request.setAttribute("studentsList", students);
+//			 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
+//				dispatcher.forward(request, response);
+			
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}
 		 
-		 try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
-				System.out.println("connected successfully");
-				qry = "insert into schedule (`id`, `class_name`, `subject_title`, `teacher_name`) VALUES (?,?,?,?)";
-
-				preparedStatement = dbCon.prepareStatement(qry);
-				preparedStatement.setNull(1,0);
-				preparedStatement.setString(2, theClass);
-				preparedStatement.setString(3, subject);
-				preparedStatement.setString(3, teacher);
 		
-				
-				if(preparedStatement.executeUpdate() > 0)
-					System.out.println("new class inserted successfully to the schedule");
-//				 request.setAttribute("studentsList", students);
-//				 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//					dispatcher.forward(request, response);
-				
-			} catch (ClassNotFoundException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 
 	}
 

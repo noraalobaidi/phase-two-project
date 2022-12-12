@@ -32,37 +32,46 @@ public class InsertTeacherServlet extends HttpServlet {
 		String civilIdString = request.getParameter("civilId");
 		String phoneString = request.getParameter("phone");
 
-		long civilId=Long.parseLong(civilIdString);
-		int phone=Integer.parseInt(phoneString);
-		
+		if(name.equals("")||civilIdString.equals("")||phoneString.equals(""))
+		{
+			out.println("<script type=\"text/javascript\">"); 
+			out.println("alert('Please fill all the fields');"); 
+			out.println("location='InsertTeacher.jsp';"); 
+			out.println("</script>"); 
+		}
+		else {
+			 try {
+				    long civilId=Long.parseLong(civilIdString);
+					int phone=Integer.parseInt(phoneString);
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
+					System.out.println("connected successfully");
+					qry = "insert into teacher (`id`, `name`, `civil_id`, `phone_number`) VALUES (?,?,?,?)";
+//					theStatement = dbCon.createStatement();
+//					resultset = theStatement.executeQuery(qry);
+					preparedStatement = dbCon.prepareStatement(qry);
+					preparedStatement.setNull(1,0);
+					preparedStatement.setString(2, name);
+					preparedStatement.setLong(3, civilId);
+					preparedStatement.setInt(4, phone);
+			
+					
+					if(preparedStatement.executeUpdate() > 0)
+						System.out.println("teacher inserted successfully");
+//					 request.setAttribute("studentsList", students);
+//					 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
+//						dispatcher.forward(request, response);
+					
+				} catch (ClassNotFoundException e) {
+					
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
 		 
-		 try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
-				System.out.println("connected successfully");
-				qry = "insert into teacher (`id`, `name`, `civil_id`, `phone_number`) VALUES (?,?,?,?)";
-//				theStatement = dbCon.createStatement();
-//				resultset = theStatement.executeQuery(qry);
-				preparedStatement = dbCon.prepareStatement(qry);
-				preparedStatement.setNull(1,0);
-				preparedStatement.setString(2, name);
-				preparedStatement.setLong(3, civilId);
-				preparedStatement.setInt(4, phone);
 		
-				
-				if(preparedStatement.executeUpdate() > 0)
-					System.out.println("teacher inserted successfully");
-//				 request.setAttribute("studentsList", students);
-//				 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//					dispatcher.forward(request, response);
-				
-			} catch (ClassNotFoundException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 }
 }

@@ -9,11 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="InsertStudentServlet">
-<input type="text" placeholder="first and last name" name="name">
-<input type="number" placeholder="civil id" name="civilId">
-<!--<input type="text" placeholder="grade" name="grade">  -->
-
+<form action="GetReport">
 <select name="class_item">
 <option value="class">class</option>
  <%
@@ -25,15 +21,7 @@
                
             <%}%>
 </select>
-
-<select name="section_item">
-<option value="section">section</option>
-<option value="Art">Art</option>
-<option value="Science">Science</option>
-</select>
-<!--<input type="text" placeholder="section" name="section">  -->
-
-<input type="submit" value="submit">
+<input type="submit" value="create report">
 </form>
 </body>
 </html>

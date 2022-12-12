@@ -31,8 +31,15 @@ public class InsertClassServlet extends HttpServlet {
 		response.setContentType("text/html");
 		String roomname = request.getParameter("roomName");
 		
-		 
-		 try {
+		if(roomname.equals(""))
+		{
+			out.println("<script type=\"text/javascript\">"); 
+			out.println("alert('Please fill all the fields');"); 
+			out.println("location='InsertClass.jsp';"); 
+			out.println("</script>"); 
+		}
+		else {
+			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
 				System.out.println("connected successfully");
@@ -58,6 +65,10 @@ public class InsertClassServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		}
+		
+		 
+		 
 }
 
 

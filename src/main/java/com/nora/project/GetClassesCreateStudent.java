@@ -18,12 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
-
-
-
-@WebServlet("/GetStudentsServlet")
-public class GetStudentsServlet extends HttpServlet {
+@WebServlet("/GetClassesCreateStudent")
+public class GetClassesCreateStudent extends HttpServlet {
 	public static final String DB_URLTOCONNECT ="jdbc:mysql://localhost:3306/learneracademy";
 	public static final String DB_USERNAME ="root";
 	public static final String DB_PASS="";
@@ -36,24 +32,23 @@ public class GetStudentsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		 response.setContentType("text/html");
-		 List <Student> students= new ArrayList();
+		 List <Classes> classes= new ArrayList();
+		 
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
 			System.out.println("connected successfully");
-			qry = "select * from student";
+			qry = "select * from class";
 			theStatement = dbCon.createStatement();
 			resultset = theStatement.executeQuery(qry);
 			 while(resultset.next()) {
-				 Student student = new Student(resultset.getInt("id"),resultset.getString("name"),
-							resultset.getLong("civilId"),resultset.getString("class"),resultset.getString("section")
-							);
-				 students.add(student);
+				 Classes c = new Classes(resultset.getInt("id"),resultset.getString("room_name"));
+				 classes.add(c);
 			 }	
 
-			 request.setAttribute("studentsList", students);
-			 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
+			 request.setAttribute("classesList", classes);
+			 RequestDispatcher dispatcher = request.getRequestDispatcher("/InsertStudent.jsp");
 				dispatcher.forward(request, response);
 			
 		} catch (ClassNotFoundException e) {
@@ -63,7 +58,6 @@ public class GetStudentsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
-	}
 
+}
 }

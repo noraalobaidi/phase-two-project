@@ -32,42 +32,57 @@ public class InsertStudentServlet extends HttpServlet {
 		response.setContentType("text/html");
 		String name = request.getParameter("name");
 		String civilIdString = request.getParameter("civilId");
-		String grade = request.getParameter("grade");
-		String section = request.getParameter("section");
-		long civilId=Long.parseLong(civilIdString);  
+		String theclass = request.getParameter("class_item");
+		String section = request.getParameter("section_item");
+		
+		if (name.equals("")||civilIdString.equals("")||theclass.equals("class")||section.equals("section"))
+		{
+			
+			
+			out.println("<script type=\"text/javascript\">"); 
+			out.println("alert('Please fill all the fields');"); 
+			out.println("location='GetClassesCreateStudent';"); 
+			out.println("</script>"); 
+//			response.sendRedirect("InsertStudent.jsp");
+			
+		}
+		else {
+			try {
+				 long civilId=Long.parseLong(civilIdString); 
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
+					System.out.println("connected successfully");
+					qry = "insert into student (`id`, `name`, `civilId`, `class`, `section`) VALUES (?,?,?,?,?)";
+//					theStatement = dbCon.createStatement();
+//					resultset = theStatement.executeQuery(qry);
+					preparedStatement = dbCon.prepareStatement(qry);
+					preparedStatement.setNull(1,0);
+
+					preparedStatement.setString(2, name);
+
+					preparedStatement.setLong(3, civilId);
+					
+					preparedStatement.setString(4, theclass);
+					
+					preparedStatement.setString(5, section);
+					
+					if(preparedStatement.executeUpdate() > 0)
+						System.out.println("student inserted successfully");
+//					 request.setAttribute("studentsList", students);
+//					 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
+//						dispatcher.forward(request, response);
+					
+				} catch (ClassNotFoundException e) {
+					
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
 		
 		 
-		 try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				dbCon = DriverManager.getConnection(DB_URLTOCONNECT, DB_USERNAME, DB_PASS);
-				System.out.println("connected successfully");
-				qry = "insert into student (`id`, `name`, `civilId`, `grade`, `section`) VALUES (?,?,?,?,?)";
-//				theStatement = dbCon.createStatement();
-//				resultset = theStatement.executeQuery(qry);
-				preparedStatement = dbCon.prepareStatement(qry);
-				preparedStatement.setNull(1,0);
-
-				preparedStatement.setString(2, name);
-
-				preparedStatement.setLong(3, civilId);
-				
-				preparedStatement.setString(4, grade);
-				
-				preparedStatement.setString(5, section);
-				
-				if(preparedStatement.executeUpdate() > 0)
-					System.out.println("student inserted successfully");
-//				 request.setAttribute("studentsList", students);
-//				 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//					dispatcher.forward(request, response);
-				
-			} catch (ClassNotFoundException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		 
 		
 	}
 
