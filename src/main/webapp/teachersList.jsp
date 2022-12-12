@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Teachers List</title>
 </head>
 <body>
 <table border ="1" width="500" align="center">

@@ -22,5 +22,20 @@
 <form action="InsertTeacher.jsp">
 <input type="submit" value="insert teacher">
 </form>
+<form action="GetTSCservlet">
+<input type="submit" value="create new class ">
+</form>
+<form action="GetSubjectServlet">
+<input type="submit" value="view subjects">
+</form>
+<form action="InsertSubject.jsp">
+<input type="submit" value="insert subject">
+</form>
+<form action="GetClassServlet">
+<input type="submit" value="view classes">
+</form>
+<form action="InsertClass.jsp">
+<input type="submit" value="insert class">
+</form>
 </body>
 </html>

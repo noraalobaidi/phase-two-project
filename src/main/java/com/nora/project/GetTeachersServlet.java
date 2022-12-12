@@ -33,6 +33,7 @@ public class GetTeachersServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		 response.setContentType("text/html");
 		 List <Teacher> teachers= new ArrayList();
+		 
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -57,6 +58,14 @@ public class GetTeachersServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+//		String checkvalue = (String)request.getParameter("check");
+//		if(checkvalue.equals("teacher")) {
+//			System.out.println("equals");
+//			request.setAttribute("teachersList", teachers);
+//			 RequestDispatcher dispatcher = request.getRequestDispatcher("Newschedule.jsp");
+//				dispatcher.forward(request, response);
+//		}
 
 		
 	}
