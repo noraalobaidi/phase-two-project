@@ -30,7 +30,7 @@ public class InsertScheduleServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
-		if (teacher.equals("teacher_name")||subject.equals("subject_name")||theClass.endsWith("class_name"))
+		if (teacher.equals("teacher_name")||subject.equals("subject_name")||theClass.equals("class_name"))
 		{
 			
 			
