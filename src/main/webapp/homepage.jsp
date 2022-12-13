@@ -77,9 +77,7 @@
 <input class="Menubutton"type="submit" value="insert subject">
 </form>
 
-<form action="InsertTeacher.jsp">
-<input class="Menubutton"type="submit" value="insert teacher">
-</form>
+
 
 </body>
 </html>

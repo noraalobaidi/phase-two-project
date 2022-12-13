@@ -4,13 +4,23 @@
 <%@page import="com.nora.project.Subject"%>
 <!DOCTYPE html>
 <html>
+<style><%@include file="/style.css"%></style>
 <head>
 <meta charset="ISO-8859-1">
 <title>Subjects List</title>
 </head>
-<body>
-<table border ="1" width="500" align="center">
-         <tr bgcolor="FFEE88">
+<body class="login">
+<div class="login-header">
+<h1 class="login-title">Learner Academy admin portal</h1>
+</div>
+<div class="path">
+<a href="homepage.jsp" style="font-size:15px">Home page</a>
+<p style="font-size:15px;margin-left:10px;margin-right:10px">  >  </p>
+<p style="font-size:15px">Subjects List</p>
+
+</div>
+<table border="1"width="900" align="center" style="margin-top:20px;border:1px solid #bbbbbb">
+         <tr bgcolor="#a89cf4">
           <th><b>id</b></th>
           <th><b>Title</b></th>
          </tr>
@@ -29,5 +39,8 @@
             </tr>
             <%}%>
         </table> 
+        <form action="InsertSubject.jsp">
+<button class="createButton" type="submit">+</button>
+</form>
 </body>
 </html>

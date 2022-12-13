@@ -4,13 +4,23 @@
 <%@page import="com.nora.project.Classes"%>
 <!DOCTYPE html>
 <html>
+<style><%@include file="/style.css"%></style>
 <head>
 <meta charset="ISO-8859-1">
-<title>Class List</title>
+<title>Classes List</title>
 </head>
-<body>
-<table border ="1" width="500" align="center">
-         <tr bgcolor="FFEE88">
+<body class="login">
+<div class="login-header">
+<h1 class="login-title">Learner Academy admin portal</h1>
+</div>
+<div class="path">
+<a href="homepage.jsp" style="font-size:15px">Home page</a>
+<p style="font-size:15px;margin-left:10px;margin-right:10px">  >  </p>
+<p style="font-size:15px">Classes List</p>
+
+</div>
+<table border="1"width="900" align="center" style="margin-top:20px;border:1px solid #bbbbbb">
+         <tr bgcolor="#fadd4d">
           <th><b>id</b></th>
           <th><b>Room Name</b></th>
          </tr>
@@ -29,5 +39,8 @@
             </tr>
             <%}%>
         </table> 
+        <form action="InsertClass.jsp">
+<button class="createButton" type="submit">+</button>
+</form>
 </body>
 </html>
