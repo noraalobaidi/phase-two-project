@@ -14,6 +14,9 @@
 <body class="login">
 <div class="login-header">
 <h1 class="login-title">Learner Academy admin portal</h1>
+<form action="index.jsp">
+<input style="margin-top: 10px;font-family: Arial, Helvetica, sans-serif;font-size: 17px;width: 100px;height: 30px;border-radius: 5px;border-style:none;display:block;background-color:white;margin-left:900px;cursor:pointer"type="submit" value="Logout">
+</form>
 </div>
 <div class="options">
 
@@ -67,17 +70,5 @@
 <h4 class="buttonTxt" style="color:#e47866">Assign teacher to Subject</h4>
 </button>
 </form>
-
-
-
-<form action="InsertClass.jsp">
-<input class="Menubutton"type="submit" value="insert class">
-</form>
-<form action="InsertSubject.jsp">
-<input class="Menubutton"type="submit" value="insert subject">
-</form>
-
-
-
 </body>
 </html>

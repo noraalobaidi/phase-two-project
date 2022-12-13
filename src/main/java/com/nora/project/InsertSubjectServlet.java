@@ -51,11 +51,15 @@ public class InsertSubjectServlet extends HttpServlet {
 					preparedStatement.setString(2, title);
 			
 					
-					if(preparedStatement.executeUpdate() > 0)
-						System.out.println("subject inserted successfully");
-//					 request.setAttribute("studentsList", students);
-//					 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//						dispatcher.forward(request, response);
+					if(preparedStatement.executeUpdate() > 0) {
+						
+						System.out.println("Subject inserted successfully");
+						out.println("<script type=\"text/javascript\">"); 
+						out.println("alert('Subject inserted successfully');"); 
+						out.println("location='GetSubjectServlet';"); 
+						out.println("</script>");
+					}
+						
 					
 				} catch (ClassNotFoundException e) {
 					

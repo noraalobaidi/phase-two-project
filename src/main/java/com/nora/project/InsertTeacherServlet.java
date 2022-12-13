@@ -56,11 +56,14 @@ public class InsertTeacherServlet extends HttpServlet {
 					preparedStatement.setInt(4, phone);
 			
 					
-					if(preparedStatement.executeUpdate() > 0)
-						System.out.println("teacher inserted successfully");
-//					 request.setAttribute("studentsList", students);
-//					 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//						dispatcher.forward(request, response);
+					if(preparedStatement.executeUpdate() > 0) {
+						
+						System.out.println("student inserted successfully");
+						out.println("<script type=\"text/javascript\">"); 
+						out.println("alert('Teacher inserted successfully');"); 
+						out.println("location='GetTeachersServlet';"); 
+						out.println("</script>");
+					}
 					
 				} catch (ClassNotFoundException e) {
 					

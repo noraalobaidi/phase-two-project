@@ -52,11 +52,14 @@ public class InsertScheduleServlet extends HttpServlet {
 			preparedStatement.setString(4, teacher);
 	
 			
-			if(preparedStatement.executeUpdate() > 0)
-				System.out.println("new class inserted successfully to the schedule");
-//			 request.setAttribute("studentsList", students);
-//			 RequestDispatcher dispatcher = request.getRequestDispatcher("/studentsList.jsp");
-//				dispatcher.forward(request, response);
+			if(preparedStatement.executeUpdate() > 0) {
+
+		    System.out.println("new class inserted successfully to the schedule");
+			out.println("<script type=\"text/javascript\">"); 
+			out.println("alert('Teacher assigned successfully');"); 
+			out.println("location='GetTSCservlet';"); 
+			out.println("</script>");
+		}
 			
 		} catch (ClassNotFoundException e) {
 			

@@ -12,6 +12,9 @@
 <body class="login">
 <div class="login-header">
 <h1 class="login-title">Learner Academy admin portal</h1>
+<form action="index.jsp">
+<input style="margin-top: 10px;font-family: Arial, Helvetica, sans-serif;font-size: 17px;width: 100px;height: 30px;border-radius: 5px;border-style:none;display:block;background-color:white;margin-left:900px;cursor:pointer"type="submit" value="Logout">
+</form>
 </div>
 <div class="path">
 <a href="homepage.jsp" style="font-size:15px">Home page</a>
